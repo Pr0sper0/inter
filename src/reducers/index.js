@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  posts: PostReducer
+  interviewers: InterviewerReducer
 });
 
 export default rootReducer;
