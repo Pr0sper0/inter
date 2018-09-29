@@ -5,6 +5,13 @@ import { fetchInterviewers } from '../actions';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      results:[]
+    }
+  }
+
   componentDidMount() {
 		this.props.fetchInterviewers();
 	}
@@ -12,9 +19,18 @@ class App extends Component {
   renderInterviewers() {
     return	_.map(this.props.interviewers, interviewer => {
 			return (
-				<li className="list-group-item" key={interviewer.results.username}>
-					{interviewer.results.name}
-				</li>
+        
+				<li className="list-group-item" key={interviewer.email}>
+       
+        <div className="form-group">
+        <div className="row inline-block">
+          <img src={interviewer.picture.thumbnail} />
+                
+          {interviewer.name.first}&nbsp;{interviewer.name.last}</div>
+          
+          </div>
+        </li>
+    
 			);
 		});
   }
@@ -22,12 +38,34 @@ class App extends Component {
   render() {
     console.log(this.props.interviewers);
 		return (
-			<div>
-				<h3>Interviewers</h3>
-				<ul className="list-group">
-        		{this.renderInterviewers()}
-				</ul>
-			</div>
+		<div className="container">
+      <h3>Interviewers</h3>
+        <div className="row">
+
+        <div className="col-md-4">
+        <h1>Applied</h1>
+            <ul className="list-group">
+               {this.renderInterviewers()}
+            </ul>
+          </div>
+          
+          <div className="col-md-4">
+          <h1>Interviewed</h1>
+            <ul className="list-group">
+               {this.renderInterviewers()}
+            </ul>
+          </div>
+
+          <div className="col-md-4">
+          <h1>Hired</h1>
+            <ul className="list-group">
+               {this.renderInterviewers()}
+            </ul>
+          </div>
+          
+          </div>
+    </div>
+		
 		);
   }
 }
