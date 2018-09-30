@@ -6,7 +6,7 @@ export default function (state = {}, action) {
 		case FETCH_INTERVIEWERS:
 		var res = action.payload.data;
 		console.log(res); 
-		return _.mapKeys(res.results, 'email');
+		return res.results;
 		default:
 			return state;
 	}
